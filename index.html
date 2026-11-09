@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8f6">
+    <title>JC Pulse</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script type="module" src="/js/app.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="JC Pulse home" data-view="dashboard">
+          <span class="brand-mark" aria-hidden="true">JC</span>
+          <span class="brand-name">JC <span>Pulse</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-link is-active" data-view="dashboard" type="button" aria-current="page">Overview</button>
+          <button class="nav-link" data-view="tracker" type="button">Tracker</button>
+          <button class="nav-link" data-view="history" type="button">History</button>
+          <button class="nav-link" data-view="reports" type="button">Reports</button>
+          <button class="nav-link" data-view="profile" type="button">Profile</button>
+        </nav>
+        <div class="topbar-tools">
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch to dark theme">
+            <svg class="icon-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.2"></circle><path d="M10 1.8v2M10 16.2v2M18.2 10h-2M3.8 10h-2m14-5.8-1.4 1.4m-8.8 8.8-1.4 1.4m11.6 0-1.4-1.4m-8.8-8.8L4.2 4.2"></path></svg>
+            <svg class="icon-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.8 12.4A7.2 7.2 0 0 1 7.6 3.2a7.3 7.3 0 1 0 9.2 9.2Z"></path></svg>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
+        <section id="dashboard-view" class="view">
+          <div class="page-heading">
+            <div>
+              <p id="today-label" class="eyebrow"></p>
+              <h1 id="greeting">Your placement, in focus.</h1>
+              <p class="subheading">Your time, clearly accounted for.</p>
+            </div>
+            <button class="button button-secondary" data-view="tracker" type="button">Open tracker <span aria-hidden="true">→</span></button>
+          </div>
+
+          <div id="profile-prompt" class="profile-prompt" hidden>
+            <p><strong>Set up your student profile</strong><span>Add your name and placement company to your reports.</span></p>
+            <button class="text-button" data-view="profile" type="button">Add details →</button>
+          </div>
+
+          <section class="summary-strip" aria-label="Placement progress">
+            <div class="summary-item">
+              <span class="summary-label">Today</span>
+              <strong id="today-total" class="summary-value">0h 00m</strong>
+              <span id="today-entry-count" class="summary-meta">0 entries</span>
+            </div>
+            <div class="summary-divider" aria-hidden="true"></div>
+            <div class="summary-item">
+              <span class="summary-label">This week <span id="week-range"></span></span>
+              <strong id="week-total" class="summary-value">0h 00m</strong>
+              <span class="summary-meta">Monday to Sunday</span>
+            </div>
+            <div class="summary-divider" aria-hidden="true"></div>
+            <div class="summary-item summary-activity">
+              <span class="summary-label">Currently tracking</span>
+              <strong id="dashboard-active-task" class="summary-value summary-task">No active task</strong>
+              <span id="dashboard-timer" class="summary-meta">Start whenever you’re ready</span>
+            </div>
+          </section>
+
+          <section id="target-progress" class="target-progress" hidden aria-label="Placement target progress">
+            <div class="target-progress-heading"><strong>Placement target</strong><span id="target-progress-label"></span></div>
+            <progress id="target-progress-bar" max="100" value="0">0%</progress>
+          </section>
+
+          <div class="dashboard-grid">
+            <section class="section-block" aria-labelledby="dashboard-tasks-heading">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Your work</p>
+                  <h2 id="dashboard-tasks-heading">Tasks</h2>
+                </div>
+                <button class="text-button" data-view="tracker" type="button">Track time →</button>
+              </div>
+              <form id="new-task-form" class="new-task-form">
+                <label class="sr-only" for="new-task-name">New task name</label>
+                <input id="new-task-name" name="name" maxlength="100" placeholder="Add a placement task..." required>
+                <label class="sr-only" for="new-task-notes">Task notes (optional)</label>
+                <input id="new-task-notes" name="notes" maxlength="500" placeholder="Optional notes">
+                <button class="button button-primary" type="submit">Add task</button>
+              </form>
+              <div class="table-wrap">
+                <table class="data-table task-table">
+                  <thead><tr><th>Task</th><th>Today</th><th>Total</th><th></th></tr></thead>
+                  <tbody id="dashboard-task-list"></tbody>
+                </table>
+                <div id="empty-tasks" class="empty-state" hidden>
+                  <strong>No tasks yet</strong>
+                  <p>Add your first placement task above to get started.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="section-block" aria-labelledby="recent-heading">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Recent activity</p>
+                  <h2 id="recent-heading">Today's entries</h2>
+                </div>
+                <button class="text-button" data-view="history" type="button">View history →</button>
+              </div>
+              <div id="recent-entries" class="activity-list"></div>
+              <p id="empty-entries" class="empty-inline" hidden>No time tracked today. Your entries will show here.</p>
+            </section>
+          </div>
+        </section>
+
+        <section id="tracker-view" class="view" hidden>
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Time tracker</p>
+              <h1>Make your time count.</h1>
+              <p class="subheading">Choose a task, start the clock, and focus on your placement.</p>
+            </div>
+          </div>
+          <section class="tracker-workspace" aria-labelledby="tracker-heading">
+            <div class="tracker-main">
+              <p class="eyebrow">PLACEMENT SESSION</p>
+              <h2 id="tracker-heading">What are you working on?</h2>
+              <p id="tracker-active-task" class="tracker-context" aria-live="polite">No task selected</p>
+              <label class="sr-only" for="tracker-task">Choose a task</label>
+              <select id="tracker-task" class="tracker-select" aria-label="Choose a task"></select>
+              <p id="tracker-context" class="tracker-context">Time is saved in this browser on this device.</p>
+              <div id="tracker-clock" class="tracker-clock" role="timer" aria-live="off">00:00:00</div>
+              <div class="tracker-controls">
+                <button id="tracker-start" class="button button-primary button-large" type="button">Start timer</button>
+                <button id="tracker-stop" class="button button-stop button-large" type="button" disabled>Stop and save</button>
+                <button id="tracker-cancel" class="text-button" type="button" hidden>Cancel timer</button>
+                <span id="tracker-state" class="tracker-state">Ready when you are</span>
+              </div>
+            </div>
+            <aside class="tracker-aside">
+              <div class="today-progress">
+                <span class="summary-label">Tracked today</span>
+                <strong id="tracker-today-total">0h 00m</strong>
+                <span class="summary-meta">16-hour maximum across all tasks per day</span>
+              </div>
+              <div class="aside-rule"></div>
+              <button id="manual-entry-open" class="button button-secondary button-full" type="button">Add time manually</button>
+              <p class="manual-hint">Forgot to start the timer? Add a past session here.</p>
+              <button class="text-button" data-view="history" type="button">Review saved entries →</button>
+            </aside>
+          </section>
+          <section class="section-block tracker-tasks" aria-labelledby="tracker-tasks-heading">
+            <div class="section-heading">
+              <div><p class="eyebrow">Quick start</p><h2 id="tracker-tasks-heading">Your tasks</h2></div>
+              <span class="section-note">Rename tasks from your Overview.</span>
+            </div>
+            <div id="tracker-task-list" class="quick-task-list"></div>
+          </section>
+        </section>
+
+        <section id="history-view" class="view" hidden>
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">Your timesheet</p>
+              <h1>Time history</h1>
+              <p class="subheading">Review and update the hours you’ve recorded.</p>
+            </div>
+          </div>
+          <form id="history-filters" class="filter-bar">
+            <label class="field-group" for="history-period"><span>Quick range</span><select id="history-period"><option value="custom">Custom dates</option><option value="week">This week</option><option value="month">This month</option></select></label>
+            <label class="field-group" for="history-from"><span>From</span><input id="history-from" type="date" required></label>
+            <label class="field-group" for="history-to"><span>To</span><input id="history-to" type="date" required></label>
+            <label class="field-group" for="history-task"><span>Task</span><select id="history-task"><option value="">All tasks</option></select></label>
+            <label class="field-group search-field" for="history-search"><span>Search</span><input id="history-search" type="search" placeholder="Find a task..."></label>
+            <button class="button button-primary" type="submit">Apply filters</button>
+          </form>
+          <div class="timesheet-summary">
+            <span id="history-result-count">0 entries</span>
+            <strong id="history-total">0h 00m</strong>
+          </div>
+          <div class="table-wrap history-table-wrap">
+            <table class="data-table history-table">
+              <thead><tr><th>Date</th><th>Task</th><th>Start</th><th>End</th><th>Duration</th><th></th></tr></thead>
+              <tbody id="history-entries"></tbody>
+            </table>
+            <div id="history-empty" class="empty-state" hidden>
+              <strong>No entries in this range</strong>
+              <p>Try a different date range or start tracking a task.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="reports-view" class="view" hidden>
+          <div class="page-heading">
+            <div><p class="eyebrow">Placement evidence</p><h1>Reports</h1><p class="subheading">Clear, structured records of the time you’ve put in.</p></div>
+          </div>
+          <form id="report-filters" class="filter-bar report-filter-bar">
+            <label class="field-group" for="report-period"><span>Report period</span>
+              <select id="report-period"><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="custom">Custom range</option></select>
+            </label>
+            <label class="field-group" for="report-date"><span>Includes date</span><input id="report-date" type="date" required></label>
+            <label id="report-from-field" class="field-group" for="report-from" hidden><span>From</span><input id="report-from" type="date"></label>
+            <label id="report-to-field" class="field-group" for="report-to" hidden><span>To</span><input id="report-to" type="date"></label>
+            <button class="button button-primary" type="submit">Update report</button>
+          </form>
+          <div class="report-actions"><button id="report-json" class="button button-secondary" type="button">Export JSON</button><button id="report-pdf" class="button button-secondary" type="button">Print / Save PDF</button></div>
+          <div id="report-content" class="report-content"></div>
+        </section>
+
+        <section id="profile-view" class="view" hidden>
+          <div class="page-heading">
+            <div><p class="eyebrow">Your details</p><h1>Student profile</h1><p class="subheading">Just the details needed for your placement evidence.</p></div>
+          </div>
+          <section class="profile-section">
+            <form id="profile-form" class="profile-form">
+              <label class="field-group" for="full-name"><span>Full name</span><input id="full-name" name="full_name" maxlength="120" autocomplete="name" placeholder="e.g. Alex Morgan" required></label>
+              <label class="field-group" for="company-name"><span>Placement company</span><input id="company-name" name="company_name" maxlength="120" autocomplete="organization" placeholder="e.g. Northside Studio" required></label>
+              <label class="field-group" for="target-hours"><span>Placement-hour target (optional)</span><input id="target-hours" type="number" min="0.25" max="100000" step="0.25" placeholder="Leave blank if you do not have a target"></label>
+              <div class="profile-form-footer"><p>Your profile and time entries stay in this browser on this device.</p><button class="button button-primary" type="submit">Save profile</button></div>
+            </form>
+          </section>
+          <section class="appearance-section">
+            <div><h2>Appearance</h2><p>Choose the look that feels right for your workspace.</p></div>
+            <div class="theme-options" role="group" aria-label="Color theme">
+              <button class="theme-option" data-theme-choice="light" type="button">Light</button>
+              <button class="theme-option" data-theme-choice="dark" type="button">Dark</button>
+            </div>
+          </section>
+          <section class="profile-section backup-section">
+            <div><h2>Backup and restore</h2><p>Export a complete JSON backup regularly. Restore replaces current records; merge adds tasks and entries with IDs not already present, keeping your current profile and settings.</p></div>
+            <div class="backup-controls">
+              <button id="backup-export" class="button button-secondary" type="button">Download full backup</button>
+              <label class="field-group" for="backup-file"><span>Select backup file</span><input id="backup-file" type="file" accept="application/json,.json"></label>
+              <button id="backup-restore" class="button button-secondary" type="button" disabled>Restore backup</button>
+              <button id="backup-merge" class="button button-secondary" type="button" disabled>Merge backup</button>
+            </div>
+          </section>
+          <section class="profile-section danger-zone">
+            <div><h2>Clear this browser’s data</h2><p>This permanently removes the profile, tasks, entries, and timer saved in this browser.</p></div>
+            <button id="clear-data" class="button button-danger" type="button">Clear all data</button>
+          </section>
+        </section>
+      </main>
+      <footer class="app-footer"><span>JC Pulse <span class="footer-divider">·</span> Placement hours, made clear.</span><span>Browser-only storage · No account or cloud sync</span></footer>
+    </div>
+    <aside class="local-data-warning" role="note">Your records are saved only in this browser on this device. Clearing browser data or switching devices can remove or leave records behind. Download regular JSON backups to keep your evidence safe.</aside>
+
+    <dialog id="task-dialog" class="dialog">
+      <form id="task-edit-form" class="form-stack">
+        <div class="dialog-heading"><div><p class="eyebrow">Task details</p><h2>Edit task name</h2></div><button class="icon-button" type="button" data-close-dialog="task-dialog" aria-label="Close">×</button></div>
+        <label class="field-group" for="edit-task-name"><span>Task name</span><input id="edit-task-name" maxlength="100" required></label>
+        <label class="field-group" for="edit-task-notes"><span>Task notes</span><textarea id="edit-task-notes" maxlength="500" rows="3"></textarea></label>
+        <div class="dialog-actions"><button class="button button-secondary" type="button" data-close-dialog="task-dialog">Cancel</button><button class="button button-primary" type="submit">Save changes</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="entry-dialog" class="dialog">
+      <form id="entry-edit-form" class="form-stack">
+        <div class="dialog-heading"><div><p class="eyebrow">Timesheet</p><h2 id="entry-dialog-title">Edit time entry</h2></div><button class="icon-button" type="button" data-close-dialog="entry-dialog" aria-label="Close">×</button></div>
+        <label class="field-group" for="entry-task"><span>Task</span><select id="entry-task" required></select></label>
+        <label class="field-group" for="entry-date"><span>Date</span><input id="entry-date" type="date" required></label>
+        <div class="time-fields">
+          <label class="field-group" for="entry-start"><span>Started</span><input id="entry-start" type="time" step="1" required></label>
+          <label class="field-group" for="entry-end"><span>Ended</span><input id="entry-end" type="time" step="1" required></label>
+        </div>
+        <label class="field-group" for="entry-notes"><span>Notes (optional)</span><textarea id="entry-notes" maxlength="1000" rows="3"></textarea></label>
+        <p class="form-hint">End times earlier than start times are treated as the following day. Entries cannot overlap or exceed 16 total hours per calendar day.</p>
+        <div class="dialog-actions"><button class="button button-secondary" type="button" data-close-dialog="entry-dialog">Cancel</button><button class="button button-primary" type="submit">Save entry</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="manual-dialog" class="dialog">
+      <form id="manual-entry-form" class="form-stack">
+        <div class="dialog-heading"><div><p class="eyebrow">Manual time</p><h2>Add a completed session</h2></div><button class="icon-button" type="button" data-close-dialog="manual-dialog" aria-label="Close">×</button></div>
+        <label class="field-group" for="manual-task"><span>Task</span><select id="manual-task" required></select></label>
+        <label class="field-group" for="manual-date"><span>Date started</span><input id="manual-date" type="date" required></label>
+        <div class="time-fields">
+          <label class="field-group" for="manual-start"><span>Started</span><input id="manual-start" type="time" required></label>
+          <label class="field-group" for="manual-end"><span>Ended</span><input id="manual-end" type="time" required></label>
+        </div>
+        <label class="field-group" for="manual-notes"><span>Notes (optional)</span><textarea id="manual-notes" maxlength="1000" rows="3"></textarea></label>
+        <p class="form-hint">If the end time is earlier than the start time, the session ends the next day.</p>
+        <div class="dialog-actions"><button class="button button-secondary" type="button" data-close-dialog="manual-dialog">Cancel</button><button class="button button-primary" type="submit">Save time</button></div>
+      </form>
+    </dialog>
+
+    <template id="task-row-template">
+      <tr>
+        <td class="task-cell"><strong class="task-name"></strong><span class="active-label" hidden>Tracking</span></td>
+        <td class="task-today"></td>
+        <td class="task-total"></td>
+        <td class="task-actions"><button class="text-button task-rename" type="button">Rename</button><button class="button button-small task-start" type="button">Start</button></td>
+      </tr>
+    </template>
+  </body>
+</html>

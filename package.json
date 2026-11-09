@@ -1,0 +1,10 @@
+{
+  "name": "jc-pulse",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A browser-only placement hours tracker for students.",
+  "scripts": {
+    "test": "node --test"
+  }
+}
