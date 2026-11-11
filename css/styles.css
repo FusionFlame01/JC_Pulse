@@ -74,10 +74,7 @@ body {
   transition: background-color 150ms ease, color 150ms ease;
 }
 
-button,
-input,
-select,
-textarea {
+button, input, select, textarea {
   font: inherit;
 }
 
@@ -110,7 +107,7 @@ button:disabled {
   min-height: 64px;
   width: 100%;
   max-width: 1120px;
-  margin: 0 auto;;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -172,8 +169,7 @@ button:disabled {
   font-weight: 560;
 }
 
-.nav-link:hover,
-.nav-link.is-active {
+.nav-link:hover, .nav-link.is-active {
   color: var(--ink);
 }
 
@@ -276,10 +272,7 @@ h2 {
   font-size: 12px;
 }
 
-/* Form Input Elements */
-input,
-select,
-textarea {
+input, select, textarea {
   min-width: 0;
   min-height: 32px;
   padding: 0 var(--space-3);
@@ -304,16 +297,12 @@ input::placeholder {
   opacity: 0.8;
 }
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus-visible {
+input:focus, select:focus, textarea:focus, button:focus-visible {
   border-color: var(--brand);
   outline: none;
   box-shadow: 0 0 0 1px var(--brand);
 }
 
-/* Button UI Blocks */
 .button {
   min-height: 32px;
   display: inline-flex;
@@ -507,7 +496,6 @@ button:focus-visible {
   margin-bottom: 12px;
 }
 
-/* The Live Tracker Clock Block */
 .tracker-workspace {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 255px;
@@ -518,12 +506,12 @@ button:focus-visible {
 }
 
 .tracker-main {
-  min-height: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 35px clamp(24px, 5vw, 62px);
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--space-4) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: var(--space-5) var(--space-4) !important;
 }
 
 .tracker-main .eyebrow {
@@ -654,10 +642,8 @@ button:focus-visible {
   background: var(--surface-raised);
 }
 
-.task-table th:nth-child(2),
-.task-table th:nth-child(3),
-.task-table td:nth-child(2),
-.task-table td:nth-child(3) {
+.task-table th:nth-child(2), .task-table th:nth-child(3),
+.task-table td:nth-child(2), .task-table td:nth-child(3) {
   width: 75px;
   white-space: nowrap;
 }
@@ -687,8 +673,7 @@ button:focus-visible {
   font-size: 10px;
 }
 
-.task-notes,
-.table-note {
+.task-notes, .table-note {
   display: block;
   margin: 2px 0 0 0;
   color: var(--muted);
@@ -696,7 +681,6 @@ button:focus-visible {
   line-height: 1.3;
 }
 
-/* Individual Lists and Active Tasks Elements */
 .activity-list {
   border: 1px solid var(--line) !important;
   border-radius: var(--radius-panel) !important;
@@ -733,8 +717,7 @@ button:focus-visible {
   gap: 2px;
 }
 
-.activity-main strong,
-.activity-main span {
+.activity-main strong, .activity-main span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -745,8 +728,7 @@ button:focus-visible {
   font-weight: 590;
 }
 
-.activity-main span,
-.activity-duration {
+.activity-main span, .activity-duration {
   color: var(--muted);
   font-size: 10px;
 }
@@ -805,8 +787,7 @@ button:focus-visible {
   font-weight: 620;
 }
 
-.empty-state p,
-.empty-inline {
+.empty-state p, .empty-inline {
   margin: 4px 0 0;
   color: var(--muted);
   font-size: 11px;
@@ -842,8 +823,7 @@ button:focus-visible {
   min-width: 130px;
 }
 
-.filter-bar input,
-.filter-bar select {
+.filter-bar input, .filter-bar select {
   width: 100%;
 }
 
@@ -868,18 +848,15 @@ button:focus-visible {
   font-weight: 650;
 }
 
-.history-table th:first-child,
-.history-table td:first-child {
+.history-table th:first-child, .history-table td:first-child {
   min-width: 135px;
 }
 
-.history-table th:nth-child(2),
-.history-table td:nth-child(2) {
+.history-table th:nth-child(2), .history-table td:nth-child(2) {
   width: 38%;
 }
 
-.history-table th:last-child,
-.history-table td:last-child {
+.history-table th:last-child, .history-table td:last-child {
   text-align: right;
 }
 
@@ -892,7 +869,6 @@ button:focus-visible {
   text-align: right;
 }
 
-/* Evidence Reports Styles */
 .report-filter-bar {
   max-width: 590px;
   margin-bottom: 22px;
@@ -933,8 +909,7 @@ button:focus-visible {
   white-space: nowrap;
 }
 
-.report-person,
-.report-range {
+.report-person, .report-range {
   margin: 3px 0 0;
   color: var(--muted);
   font-size: 10px;
@@ -1022,8 +997,7 @@ button:focus-visible {
   min-width: 580px;
 }
 
-.report-table td,
-.report-table th {
+.report-table td, .report-table th {
   padding: 9px 10px;
 }
 
@@ -1047,11 +1021,10 @@ button:focus-visible {
 /* ==========================================================================
    6. REPORTS GENERATION, PROFILES, UTILITIES, & DIALOG OVERLAYS (PART 2)
    ========================================================================== */
-/* User Settings Profile Shell */
 .profile-section {
   width: 100% !important;
   max-width: 650px !important;
-  margin-left: 0 !important;      /* 👈 Pulls the container back to the left wall */
+  margin-left: 0 !important;
   margin-right: 0 !important;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -1094,15 +1067,14 @@ button:focus-visible {
 }
 
 .profile-form-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 3px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin-top: 3px !important;
 }
 
-.profile-form-footer p,
-.appearance-section p {
+.profile-form-footer p, .appearance-section p {
   margin: 0;
   color: var(--muted);
   font-size: 10px;
@@ -1135,23 +1107,9 @@ button:focus-visible {
   accent-color: var(--brand);
 }
 
-/* Appearance & Themes Selection (THE DUPLICATE I BELIEVE)
 .appearance-section {
-  max-width: 650px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-5);
-  margin-top: 30px;
-} */
-
-/* ==========================================================================
-   REMOVED THE SECONDARY DUPLICATE THEME ROW SYSTEM (Inside Section 6)
-   ========================================================================== */
-.appearance-section {
-  display: none !important; /* 👈 Completely hides the duplicate theme configuration options row everywhere */
+  display: none !important;
 }
-
 
 .appearance-section h2 {
   margin-bottom: 3px;
@@ -1188,7 +1146,6 @@ button:focus-visible {
   color: var(--brand-ink);
 }
 
-/* Backups Components Layout */
 .backup-section {
   margin-top: var(--space-2);
 }
@@ -1204,31 +1161,29 @@ button:focus-visible {
   width: 100%;
 }
 
-/* Update this selector inside Section 6 */
 .backup-controls input[type="file"] {
   width: 100%;
   min-height: 38px;
   height: 38px;
   display: flex;
   align-items: center;
-  padding: 0 !important; /* Clear old padding frames */
+  padding: 0 !important;
   font-size: 12px;
   cursor: pointer;
-  border: 1px solid var(--line-strong); /* Only the main card row gets a subtle border box */
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius-control);
-  background: transparent !important; /* Forces row container to stay transparent */
+  background: transparent !important;
 }
 
-/* Formats the actual "Choose File" click button box specifically */
 .backup-controls input[type="file"]::-webkit-file-upload-button,
 .backup-controls input[type="file"]::file-selector-button {
   min-height: 36px;
   height: 36px;
-  margin: 0 16px 0 0; /* 👈 Adds clean horizontal breathing space right after the button */
+  margin: 0 16px 0 0;
   padding: 0 var(--space-4);
   background: var(--surface-muted);
   border: 0;
-  border-right: 1px solid var(--line-strong); /* Crisp dividing edge right after button */
+  border-right: 1px solid var(--line-strong);
   border-top-left-radius: calc(var(--radius-control) - 1px);
   border-bottom-left-radius: calc(var(--radius-control) - 1px);
   color: var(--ink-soft);
@@ -1237,25 +1192,38 @@ button:focus-visible {
   transition: background-color 120ms ease, color 120ms ease;
 }
 
-/* Hover effect updates to isolate strictly to the click button container */
 .backup-controls input[type="file"]:hover::-webkit-file-upload-button,
 .backup-controls input[type="file"]:hover::file-selector-button {
   background: var(--brand-soft);
   color: var(--brand-ink);
 }
 
-
 /* ==========================================================================
-   UNIFIED DARK CONTAINER BLOCK OVERRIDES (Inside Section 6)
+   TRACKER CONTAINER STRUCTURAL SPACING
    ========================================================================== */
+.tracker-main .timer-controls, .tracker-main div:has(> #clear-data) {
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--space-4) !important;
+  margin: var(--space-2) 0 !important;
+}
 
+/* Explicitly isolate desktop manual entry row constraints */
+main:not([hidden]) .tracker-main .manual-entry-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: var(--space-4) !important;
+  margin-top: var(--space-3) !important;
+}
 
-/* Ensure the inner layout container rows inherit this unified dark base */
+/* Data Purge System Component Blocks */
 .danger-zone-card {
   width: 100% !important;
   max-width: 650px !important;
   margin-top: var(--space-5) !important;
-  margin-left: 0 !important;      /* 👈 Pulls the lower block back to the left wall */
+  margin-left: 0 !important;
   margin-right: 0 !important;
   border: 1px solid var(--line);
   border-radius: var(--radius-panel);
@@ -1268,7 +1236,7 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-5);
-  padding: var(--space-4) 0 !important; /* 👈 Aligns 'C' directly under 'B' with zero left margin offset */
+  padding: var(--space-4) !important;
   width: 100%;
   background-color: var(--surface-raised) !important;
 }
@@ -1292,7 +1260,6 @@ button:focus-visible {
   font-size: 11px;
   line-height: 1.4;
 }
-
 
 .button-danger {
   min-height: 34px;
@@ -1355,8 +1322,7 @@ button:focus-visible {
   gap: 15px;
 }
 
-.dialog-heading,
-.dialog-actions {
+.dialog-heading, .dialog-actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1371,21 +1337,18 @@ button:focus-visible {
   font-size: 16px;
 }
 
-/* ==========================================================================
-   FIXED ICON BUTTON ALIGNMENT (Inside Section 6)
-   ========================================================================== */
 .icon-button {
   width: 32px;
   height: 32px;
-  display: inline-flex;        /* 👈 Forces flex context on the wrapper */
-  align-items: center;         /* 👈 Vertically centers the "X" vector line */
-  justify-content: center;     /* 👈 Horizontally centers the "X" vector line */
-  padding: 0;                  /* 👈 Destroys internal browser layout padding shifts */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius-control);
   background: var(--surface);
   color: var(--muted);
-  font-size: 14px;             /* Balances icon sizing dimensions */
+  font-size: 14px;
   transition: all 120ms ease;
 }
 
@@ -1395,7 +1358,6 @@ button:focus-visible {
   border-color: var(--line-strong);
 }
 
-/* Isolated red hover effect strictly for modal exit buttons */
 .dialog .icon-button:hover {
   background: var(--danger-soft) !important;
   border-color: var(--danger) !important;
@@ -1473,30 +1435,23 @@ button:focus-visible {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ==========================================================================
-   7. LIVE TOAST PLACEMENT & STACKING ALIGNMENT
-   ========================================================================== */
 .status-message {
   position: fixed;
   z-index: 999;
   top: 84px;                    
   left: 50%;
   transform: translate(-50%, -10px);
-  
   width: max-content;
   max-width: min(520px, calc(100vw - 28px));
   height: auto !important;
   padding: 10px 16px;
-  
   background: var(--surface);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-control);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  
   color: var(--ink);
   font-size: 11px;
   font-weight: 550;
-  
   opacity: 0;
   pointer-events: none;
   transition: opacity 150ms ease, transform 150ms ease;
@@ -1508,8 +1463,7 @@ button:focus-visible {
   pointer-events: auto;
 }
 
-.status-message[data-type="error"],
-.status-message.is-error {
+.status-message[data-type="error"], .status-message.is-error {
   border-color: var(--danger);
   color: var(--danger);
   background: var(--danger-soft);
@@ -1520,7 +1474,7 @@ button:focus-visible {
   background: var(--running-soft);
 }
 
-   /* ==========================================================================
+/* ==========================================================================
    8. RESPONSIVE QUERIES, LAYOUT BREAKPOINTS & TRANSITIONS
    ========================================================================== */
 .app-shell, main {
@@ -1540,7 +1494,6 @@ button:focus-visible {
   width: 100%;
 }
 
-/* Visibility Contrast Locks for Dark Theme Workspace Components */
 :root[data-theme="dark"] .summary-value,
 :root[data-theme="dark"] .summary-task,
 :root[data-theme="dark"] h1,
@@ -1556,6 +1509,38 @@ button:focus-visible {
     width: 100% !important;
     padding-left: var(--space-3) !important;
     padding-right: var(--space-3) !important;
+  }
+
+    /* Mobile Manual Entry Enhancements */
+  .app-shell .tracker-aside {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-4) !important;
+    padding: var(--space-4) !important;
+  }
+
+  .app-shell .manual-entry-group {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: var(--space-2) !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .app-shell #manual-entry-open {
+    width: 100% !important;
+    min-height: 40px !important; /* Larger touch-target for mobile users */
+  }
+
+  .app-shell .manual-hint {
+    font-size: 11px !important;
+    text-align: left !important;
+    color: var(--muted) !important;
+  }
+
+  .app-shell .aside-rule {
+    display: none !important; /* Clear out intersecting line breaks on smaller ports */
   }
 
   .topbar {
@@ -1582,6 +1567,7 @@ button:focus-visible {
 
   .tracker-workspace {
     grid-template-columns: 1fr;
+    height: auto !important;
   }
 
   .tracker-aside {
@@ -1589,6 +1575,38 @@ button:focus-visible {
     grid-template-columns: 1fr 1fr;
     border-left: 0;
     border-top: 1px solid var(--line);
+  }
+
+    /* --- Mobile Fluid Data Table Scroll Systems --- */
+  
+  .table-wrap,
+  .report-table-wrap {
+    width: 100% !important;
+    overflow-x: auto !important;       /* Activates horizontal swipe scrolling */
+    overflow-y: hidden !important;     /* Disables vertical spill scroll tracks */
+    -webkit-overflow-scrolling: touch; /* Smooth kinetic sliding on phone touch displays */
+  }
+
+  /* Force data rows to stay structured without crushing layout headers */
+  .data-table,
+  .report-table {
+    min-width: 640px !important; /* Locks layout proportions so content doesn't break down */
+    width: 100% !important;
+  }
+
+  /* Expand row metrics so elements can line up in a single uniform row */
+  .data-table td,
+  .report-table td {
+    padding: var(--space-3) var(--space-4) !important;
+    white-space: nowrap !important; /* Prevents text timestamp blocks from dual-lining awkwardly */
+    vertical-align: middle !important;
+  }
+
+  /* Align the actionable edit/delete buttons grid axis cleanly */
+  .entry-actions,
+  .task-actions {
+    padding-right: var(--space-4) !important;
+    text-align: right !important;
   }
 
   .filter-bar {
@@ -1603,12 +1621,82 @@ button:focus-visible {
   .local-data-warning {
     width: calc(100% - 36px);
   }
+
+  h1 {
+    font-size: 22px !important;
+    letter-spacing: -0.5px !important;
+    line-height: 1.25 !important;
+  }
+
+  .summary-strip {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    min-height: unset !important;
+    padding: var(--space-4) !important;
+    gap: var(--space-3) !important;
+  }
+
+  .summary-divider {
+    width: 100% !important;
+    height: 1px !important;
+    background: var(--line) !important;
+  }
+
+  .tracker-main {
+    padding: var(--space-5) var(--space-4) !important;
+    min-height: unset !important;
+  }
+
+  .tracker-clock {
+    font-size: 38px !important;
+    margin: var(--space-2) 0 !important;
+  }
+
+  .new-task-form {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-2) !important;
+  }
+
+  /* --- Manual Entry Mobile Harmonization Block --- */
+  .app-shell .tracker-main .manual-entry-row,
+  .app-shell .tracker-main div:has(> #add-time-manual) {
+    display: flex !important;
+    flex-direction: column !important; /* Force stack sequence order */
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: var(--space-3) !important;
+    margin-top: var(--space-4) !important;
+    width: 100% !important;
+  }
+
+  .tracker-main button#add-time-manual,
+  .tracker-main .manual-entry-row button {
+    width: 100% !important;
+    min-height: 40px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .tracker-main .manual-entry-row + p,
+  .tracker-main div:has(> #add-time-manual) + span {
+    display: block !important;
+    margin: 0 !important;
+    padding-top: var(--space-1) !important;
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    color: var(--muted) !important;
+    text-align: left !important;
+  }
+
+  .tracker-main hr, 
+  .tracker-main .manual-entry-row + .aside-rule {
+    display: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -1625,17 +1713,9 @@ button:focus-visible {
     margin: 12mm 15mm;
   }
 
-  /* Hide app navigation and non-document elements safely */
-  .topbar,
-  .app-footer,
-  .local-data-warning,
-  .status-message,
-  .page-heading,
-  .filter-bar,
-  .report-actions,
-  .theme-toggle,
-  main > *:not(.report-content),
-  .view:not(#reports-view) {
+  .topbar, .app-footer, .local-data-warning, .status-message,
+  .page-heading, .filter-bar, .report-actions, .theme-toggle,
+  main > *:not(.report-content), .view:not(#reports-view) {
     display: none !important;
   }
 
@@ -1645,14 +1725,12 @@ button:focus-visible {
     background: transparent !important;
   }
 
-  .report-content,
-  #reports-view {
+  .report-content, #reports-view {
     display: block !important;
     width: 100% !important;
     background: transparent !important;
   }
 
-  /* BASE LIGHT MODE PDF CONFIGURATION (Paper-white backdrop styles) */
   body, html {
     background-color: #ffffff !important;
     color: #1c2421 !important;
@@ -1680,9 +1758,7 @@ button:focus-visible {
   .report-table td { border-bottom: 1px solid #e2e7e2 !important; color: #3d4a44 !important; }
   .report-footer { border-top: 1px solid #e2e7e2 !important; color: #6e7973 !important; }
 
-  /* DYNAMIC DARK MODE OVERRIDES (Fully isolated to print execution runtime) */
-  :root[data-theme="dark"],
-  :root[data-theme="dark"] body {
+  :root[data-theme="dark"], :root[data-theme="dark"] body {
     background-color: #0f1210 !important;
     color: #f0f4f1 !important;
   }
@@ -1717,8 +1793,7 @@ button:focus-visible {
     border-bottom: 1px solid #262e29 !important;
   }
 
-  :root[data-theme="dark"] .report-table tr,
-  :root[data-theme="dark"] .report-table td {
+  :root[data-theme="dark"] .report-table tr, :root[data-theme="dark"] .report-table td {
     background-color: #0f1210 !important;        
   }
 

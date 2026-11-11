@@ -144,10 +144,12 @@
                 <strong id="tracker-today-total">0h 00m</strong>
                 <span class="summary-meta">16-hour maximum across all tasks per day</span>
               </div>
-              <div class="aside-rule"></div>
-              <button id="manual-entry-open" class="button button-secondary button-full" type="button">Add time manually</button>
-              <p class="manual-hint">Forgot to start the timer? Add a past session here.</p>
-              <button class="text-button" data-view="history" type="button">Review saved entries →</button>
+                <div class="aside-rule"></div>
+                  <div class="manual-entry-group">
+                    <button id="manual-entry-open" class="button button-secondary button-full" type="button">Add time manually</button>
+                    <p class="manual-hint">Forgot to start the timer? Add a past session here.</p>
+                  </div>
+                  <button class="text-button" data-view="history" type="button">Review saved entries →</button>
             </aside>
           </section>
           <section class="section-block tracker-tasks" aria-labelledby="tracker-tasks-heading">
@@ -236,10 +238,15 @@
               <button id="backup-merge" class="button button-secondary" type="button" disabled>Merge backup</button>
             </div>
           </section>
-          <section class="profile-section danger-zone">
-            <div><h2>Clear this browser’s data</h2><p>This permanently removes the profile, tasks, entries, and timer saved in this browser.</p></div>
-            <button id="clear-data" class="button button-danger" type="button">Clear all data</button>
-          </section>
+            <section class="profile-section">
+              <div class="profile-form-footer" style="margin-top: 0; padding: 24px;">
+                <div>
+                  <h2 style="margin: 0; font-size: 13px;">Clear this browser’s data</h2>
+                  <p style="margin: 4px 0 0; color: var(--muted); font-size: 11px;">This permanently removes the profile, tasks, entries, and timer saved in this browser.</p>
+                </div>
+                  <button id="clear-data" class="button button-danger" type="button" style="margin: 0;">Clear all data</button>
+              </div>
+            </section>
         </section>
       </main>
       <footer class="app-footer"><span>JC Pulse <span class="footer-divider">·</span> Placement hours, made clear.</span><span>Browser-only storage · No account or cloud sync</span></footer>
